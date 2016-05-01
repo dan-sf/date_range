@@ -1,11 +1,5 @@
 #!/bin/sh
 
-#--------------------------------------------
-# Date range script: Maintained by Dan Fowler
-# Website: dsfcode.com
-# Version 1.0.0
-#--------------------------------------------
-
 date1=$1
 date2=$2
 

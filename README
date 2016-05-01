@@ -1,13 +1,11 @@
-#------------------------------------------------
-# README for date_range: Maintained by Dan Fowler
-# Website: dsfcode.com
-# Version 1.0.0
-#------------------------------------------------
+#----------------------
+# README for date_range
+#----------------------
 
 Files:
 	date_range.sh
 
-Discription:
+Description:
 	- Small command line utility used to print consecutive days or months given start and end dates in the form of YYYYMM or YYYYMMDD
 	- Only works with GNU date
 	- Ex:
