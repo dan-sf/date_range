@@ -8,6 +8,9 @@ from calendar import monthrange
 import argparse
 import sys
 
+DAY_STR_LEN = 8
+MONTH_STR_LEN = 6
+
 class DateRangeException(Exception):
     pass
 
@@ -56,10 +59,10 @@ def check_date_string(date_string):
     Helper function to validate proper date format
     """
     try:
-        if len(date_string) == 6:
-            datetime.strptime(date_string, '%Y%m')
-        else:
+        if len(date_string) == DAY_STR_LEN:
             datetime.strptime(date_string, '%Y%m%d')
+        else:
+            datetime.strptime(date_string, '%Y%m')
     except:
         raise DateRangeException("Date format error. Expected date format: YYYYMM or YYYYMMDD")
 
@@ -67,7 +70,7 @@ def error_check(start_date, end_date):
     """
     Check for input errors
     """
-    if len(start_date) != len(end_date) and (len(start_date) != 6 or len(start_date) != 8):
+    if len(start_date) != len(end_date) and (len(start_date) != MONTH_STR_LEN or len(start_date) != DAY_STR_LEN):
         raise DateRangeException("Start and end date must have the same format (YYYYMM or YYYYMMDD)")
 
     check_date_string(start_date)
@@ -77,7 +80,7 @@ def output_dates(start_date, end_date):
     """
     Output either days or months
     """
-    if len(start_date) == 8:
+    if len(start_date) == DAY_STR_LEN:
         start_date = parse_day(start_date)
         end_date = parse_day(end_date)
         delta_days(start_date, end_date)
