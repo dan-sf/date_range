@@ -90,10 +90,10 @@ def output_dates(start_date, end_date):
         delta_months(start_date, end_date)
 
 def main():
-    parser = argparse.ArgumentParser("Usage: %prog YYYYMM YYYYMM or %prog YYYYMMDD YYYYMMDD")
+    parser = argparse.ArgumentParser()
     parser.description="Output a range of dates given start and end dates."
-    parser.add_argument("start_date", help="Start date")
-    parser.add_argument("end_date", help="End date")
+    parser.add_argument("start_date", help="Start date, YYYYMM or YYYYMMDD")
+    parser.add_argument("end_date", help="End date, YYYYMM or YYYYMMDD")
     args = parser.parse_args()
 
     # Check for formatting errors and output data
