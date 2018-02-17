@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# This bash script has been deprecated, the python version of date_range should
+# be used instead
+
 date1=$1
 date2=$2
 
