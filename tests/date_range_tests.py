@@ -2,16 +2,16 @@ import mock
 import unittest
 import tempfile
 import sys
-import date_range
+from date_range import date_range
 from datetime import date, datetime
 
 class DateRange(unittest.TestCase):
     def test_delta_days(self):
         start = date(2014, 12, 28)
-        end = date(2015, 01, 05)
+        end = date(2015, 1, 5)
         expected = '20141228\n20141229\n20141230\n20141231\n20150101\n20150102\n20150103\n20150104\n20150105\n'
 
-        test_outfile = tempfile.NamedTemporaryFile()
+        test_outfile = tempfile.NamedTemporaryFile(mode='w+')
         stdout_patch = mock.patch.object(sys, 'stdout', test_outfile)
 
         stdout_patch.start()
@@ -22,12 +22,14 @@ class DateRange(unittest.TestCase):
         actual = test_outfile.read()
         self.assertEqual(actual, expected)
 
+        test_outfile.close()
+
     def test_delta_months(self):
-        start = date(2014, 07, 01)
-        end = date(2015, 02, 28)
+        start = date(2014, 7, 1)
+        end = date(2015, 2, 28)
         expected = '201407\n201408\n201409\n201410\n201411\n201412\n201501\n201502\n'
 
-        test_outfile = tempfile.NamedTemporaryFile()
+        test_outfile = tempfile.NamedTemporaryFile(mode='w+')
         stdout_patch = mock.patch.object(sys, 'stdout', test_outfile)
 
         stdout_patch.start()
@@ -38,9 +40,11 @@ class DateRange(unittest.TestCase):
         actual = test_outfile.read()
         self.assertEqual(actual, expected)
 
+        test_outfile.close()
+
     def test_parse_date_day(self):
         input_date = '20140714'
-        expected = date(2014, 07, 14)
+        expected = date(2014, 7, 14)
         actual = date_range.parse_day(input_date)
         self.assertEqual(actual, expected)
 
@@ -48,7 +52,7 @@ class DateRange(unittest.TestCase):
     def test_parse_month_start(self, mock_monthrange):
         input_date = '201407'
         mock_monthrange.return_value = 31
-        expected = date(2014, 07, 01)
+        expected = date(2014, 7, 1)
         actual = date_range.parse_month(input_date)
         self.assertEqual(actual, expected)
 
@@ -56,7 +60,7 @@ class DateRange(unittest.TestCase):
     def test_parse_month_end(self, mock_monthrange):
         input_date = '201407'
         mock_monthrange.return_value = 31
-        expected = date(2014, 07, 31)
+        expected = date(2014, 7, 31)
         actual = date_range.parse_month(input_date, end_date=True)
         self.assertEqual(actual, expected)
 
