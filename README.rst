@@ -34,13 +34,13 @@ Examples
 .. code-block:: bash
 
     # Months
-    $ date_range.py 201310 201401
+    $ date_range 201310 201401
     201310
     201311
     201312
     201401
     # Days
-    $ date_range.py 20131021 20131102
+    $ date_range 20131021 20131102
     20131027
     20131028
     20131029
@@ -50,7 +50,7 @@ Examples
     20131102
 
 Development
-___________
+-----------
 
 Tests can be run with the following command.
 
